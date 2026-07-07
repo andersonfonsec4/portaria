@@ -7,97 +7,69 @@
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="logo">
         <h2>🛡 Portaria</h2>
-
         <p>Controle de Acesso</p>
       </div>
 
       <nav>
         <ul>
           <li class="active">
-            <a href="#" onclick="carregarDashboard()">🏠 Dashboard</a>
+            <a href="#" onclick="carregarDashboard()"> 🏠 Dashboard </a>
           </li>
 
           <li>
-            <a href="#" onclick="carregarVisitantes()">👤 Visitantes</a>
+            <a href="#" onclick="carregarVisitantes()"> 👤 Visitantes </a>
           </li>
 
           <li>
-            <a href="#" onclick="carregarEntregas()">📦 Entregas</a>
+            <a href="#" onclick="carregarEntregas()"> 📦 Entregas </a>
           </li>
 
           <li>
-            <a href="#" onclick="carregarHistorico()">📋 Histórico</a>
+            <a href="#" onclick="carregarHistorico()"> 📋 Histórico </a>
           </li>
 
           <li>
-            <a href="#" onclick="carregarConfiguracoes()">⚙ Configurações</a>
+            <a href="#" onclick="carregarConfiguracoes()"> ⚙ Configurações </a>
           </li>
         </ul>
       </nav>
     </aside>
 
+    <!-- Conteúdo -->
     <div class="content">
+      <!-- Header -->
       <header class="header">
-        <header class="header">
+        <div class="header-left">
+          <h2 id="page-title">Dashboard</h2>
 
-    <div class="header-left">
+          <p>Sistema de Controle de Portaria</p>
+        </div>
 
-        <h2 id="page-title">Dashboard</h2>
+        <div class="header-right">
+          <span id="current-date"></span>
 
-        <p>Sistema de Controle de Portaria</p>
-
-    </div>
-
-    <div class="header-right">
-
-        <span id="current-date"></span>
-
-        <span class="user-name">Anderson</span>
-
-    </div>
-
-</header>
+          <span class="user-name">Anderson</span>
+        </div>
       </header>
 
-      <class="main" id="content">
-        <h1>Dashboard</h1>
-
-        <p>Bem-vindo ao Sistema de Portaria.</p>
-
-        <div class="cards">
-          <div class="card">
-            <h3>Visitantes</h3>
-            <span>0</span>
-          </div>
-
-          <div class="card">
-            <h3>Entregas</h3>
-            <span>0</span>
-          </div>
-
-          <div class="card">
-            <h3>Entradas Hoje</h3>
-            <span>0</span>
-          </div>
-
-          <div class="card">
-            <h3>Saídas Hoje</h3>
-            <span>0</span>
-          </div>
-        </div>
-      </main>
+      <!-- Área dinâmica -->
+      <main class="main" id="content"></main>
     </div>
 
+    <!-- Views -->
     <script src="views/dashboard.js"></script>
-<script src="views/visitantes.js"></script>
-<script src="views/entregas.js"></script>
-<script src="views/historico.js"></script>
-<script src="views/configuracoes.js"></script>
+    <script src="views/visitantes.js"></script>
+    <script src="views/entregas.js"></script>
+    <script src="views/historico.js"></script>
+    <script src="views/configuracoes.js"></script>
 
-<script src="js/app.js"></script>
+    <!-- Aplicação -->
+    <script src="js/app.js"></script>
   </body>
 </html>

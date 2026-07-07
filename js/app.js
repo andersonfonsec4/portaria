@@ -1,23 +1,25 @@
-window.onload = function(){
+window.onload = function () {
+  carregarDashboard();
 
-    carregarDashboard();
+  atualizarData();
+};
 
-    atualizarData();
+function atualizarData() {
+  const data = new Date();
 
+  const opcoes = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  };
+
+  document.getElementById("current-date").textContent = data.toLocaleDateString(
+    "pt-BR",
+    opcoes,
+  );
 }
-function atualizarData(){
 
-    const data = new Date();
-
-    const opcoes = {
-
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-
-    };
-
-    document.getElementById("current-date").textContent =
-        data.toLocaleDateString("pt-BR", opcoes);
-
+// ESTA FUNÇÃO ESTÁ FALTANDO
+function alterarTitulo(titulo) {
+  document.getElementById("page-title").textContent = titulo;
 }

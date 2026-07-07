@@ -1,14 +1,13 @@
-document.getElementById("page-title").textContent = "Histórico";
 function carregarHistorico() {
+  alterarTitulo("Histórico");
 
-    const content = document.getElementById("content");
+  const content = document.getElementById("content");
 
-    content.innerHTML = `
+  content.innerHTML = `
 
         <h1>Histórico</h1>
 
         <p>Histórico do sistema.</p>
 
     `;
-
 }

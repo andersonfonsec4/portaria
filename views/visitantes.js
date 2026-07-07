@@ -1,5 +1,6 @@
-document.getElementById("page-title").textContent = "Visitantes";
 function carregarVisitantes() {
+  alterarTitulo("Visitantes");
+
   const content = document.getElementById("content");
 
   content.innerHTML = `

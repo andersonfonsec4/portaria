@@ -1,15 +1,13 @@
-document.getElementById("page-title").textContent = "Configurações";
 function carregarConfiguracoes() {
-    document.getElementById("page-title").textContent = "Configurações";
+  alterarTitulo("Configurações");
 
-    const content = document.getElementById("content");
+  const content = document.getElementById("content");
 
-    content.innerHTML = `
+  content.innerHTML = `
 
         <h1>Configurações</h1>
 
         <p>Configurações do sistema.</p>
 
     `;
-
 }

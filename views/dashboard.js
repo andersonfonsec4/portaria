@@ -1,9 +1,9 @@
-document.getElementById("page-title").textContent = "Dashboard";
-function carregarDashboard(){
+function carregarDashboard() {
+  alterarTitulo("Dashboard");
 
-    const content = document.getElementById("content");
+  const content = document.getElementById("content");
 
-    content.innerHTML = `
+  content.innerHTML = `
     
         <h1>Dashboard</h1>
 
@@ -46,5 +46,4 @@ function carregarDashboard(){
         </div>
 
     `;
-
 }
