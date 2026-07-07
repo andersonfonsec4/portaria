@@ -1,3 +1,4 @@
+document.getElementById("page-title").textContent = "Dashboard";
 function carregarDashboard(){
 
     const content = document.getElementById("content");

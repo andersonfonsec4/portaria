@@ -1,13 +1,12 @@
+document.getElementById("page-title").textContent = "Visitantes";
 function carregarVisitantes() {
+  const content = document.getElementById("content");
 
-    const content = document.getElementById("content");
-
-    content.innerHTML = `
+  content.innerHTML = `
 
         <h1>Visitantes</h1>
 
         <p>Cadastro de visitantes.</p>
 
     `;
-
 }

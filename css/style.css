@@ -174,4 +174,55 @@ nav li a{
     height:100%;
 
 }
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:white;
+
+    padding:20px 30px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.header-left h2{
+
+    font-size:28px;
+
+    color:#1E293B;
+
+}
+
+.header-left p{
+
+    color:#64748B;
+
+    margin-top:5px;
+
+}
+
+.header-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:5px;
+
+}
+
+.user-name{
+
+    font-weight:bold;
+
+    color:#1E293B;
+
+}
 

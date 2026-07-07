@@ -1,3 +1,4 @@
+document.getElementById("page-title").textContent = "Entregas";
 function carregarEntregas() {
 
     const content = document.getElementById("content");

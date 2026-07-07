@@ -1,3 +1,4 @@
+document.getElementById("page-title").textContent = "Histórico";
 function carregarHistorico() {
 
     const content = document.getElementById("content");
