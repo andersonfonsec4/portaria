@@ -178,3 +178,109 @@ nav li a {
 
   color: #1e293b;
 }
+/* ===========================
+   FORMULÁRIO
+=========================== */
+
+.page-header{
+
+    margin-bottom:30px;
+
+}
+
+.page-header h1{
+
+    color:#1E293B;
+
+    margin-bottom:8px;
+
+}
+
+.page-header p{
+
+    color:#64748B;
+
+}
+
+.form-container{
+
+    background:#FFFFFF;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.form-group input{
+
+    padding:12px;
+
+    border:1px solid #CBD5E1;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+}
+
+.form-group input:focus{
+
+    outline:none;
+
+    border-color:#2563EB;
+
+}
+.page-content{
+
+    display:flex;
+
+    gap:30px;
+
+    align-items:flex-start;
+
+}
+
+.table-container{
+
+    flex:1;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+
+    min-height:500px;
+
+}
+
+.form-container{
+
+    width:320px;
+
+}

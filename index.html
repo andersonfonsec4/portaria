@@ -1,75 +1,98 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sistema de Portaria</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+    <link rel="stylesheet" href="css/style.css">
 
-  <body>
-    <!-- Sidebar -->
+</head>
+
+<body>
+
+    <!-- MENU LATERAL -->
     <aside class="sidebar">
-      <div class="logo">
-        <h2>🛡 Portaria</h2>
-        <p>Controle de Acesso</p>
-      </div>
 
-      <nav>
-        <ul>
-          <li class="active">
-            <a href="#" onclick="carregarDashboard()"> 🏠 Dashboard </a>
-          </li>
+        <div class="logo">
 
-          <li>
-            <a href="#" onclick="carregarVisitantes()"> 👤 Visitantes </a>
-          </li>
+            <h2>🛡 Portaria</h2>
 
-          <li>
-            <a href="#" onclick="carregarEntregas()"> 📦 Entregas </a>
-          </li>
+            <p>Controle de Acesso</p>
 
-          <li>
-            <a href="#" onclick="carregarHistorico()"> 📋 Histórico </a>
-          </li>
+        </div>
 
-          <li>
-            <a href="#" onclick="carregarConfiguracoes()"> ⚙ Configurações </a>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="#" onclick="carregarDashboard()">🏠 Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="carregarVisitantes()">👤 Visitantes</a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="carregarEntregas()">📦 Entregas</a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="carregarHistorico()">📋 Histórico</a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="carregarConfiguracoes()">⚙ Configurações</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
     </aside>
 
-    <!-- Conteúdo -->
+    <!-- CONTEÚDO -->
     <div class="content">
-      <!-- Header -->
-      <header class="header">
-        <div class="header-left">
-          <h2 id="page-title">Dashboard</h2>
 
-          <p>Sistema de Controle de Portaria</p>
-        </div>
+        <header class="header">
 
-        <div class="header-right">
-          <span id="current-date"></span>
+            <div class="header-left">
 
-          <span class="user-name">Anderson</span>
-        </div>
-      </header>
+                <h2 id="page-title">Dashboard</h2>
 
-      <!-- Área dinâmica -->
-      <main class="main" id="content"></main>
+                <p>Sistema de Controle de Portaria</p>
+
+            </div>
+
+            <div class="header-right">
+
+                <span id="current-date"></span>
+
+                <span class="user-name">Anderson</span>
+
+            </div>
+
+        </header>
+
+        <!-- ÁREA DINÂMICA -->
+        <main class="main" id="content"></main>
+
     </div>
 
-    <!-- Views -->
+    <!-- VIEWS -->
     <script src="views/dashboard.js"></script>
     <script src="views/visitantes.js"></script>
     <script src="views/entregas.js"></script>
     <script src="views/historico.js"></script>
     <script src="views/configuracoes.js"></script>
 
-    <!-- Aplicação -->
+    <!-- APP -->
     <script src="js/app.js"></script>
-  </body>
+
+</body>
+
 </html>
