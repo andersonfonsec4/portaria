@@ -1,5 +1,9 @@
-function carregarVisitantes() {
+// Banco de dados temporário (em memória)
+let visitantes = JSON.parse(localStorage.getItem("visitantes")) || [];
 
+let indiceEdicao = -1;
+
+function carregarVisitantes() {
     alterarTitulo("Visitantes");
 
     const content = document.getElementById("content");
@@ -20,7 +24,36 @@ function carregarVisitantes() {
 
                 <h2>Lista de Visitantes</h2>
 
-                <p>Nenhum visitante cadastrado.</p>
+                <table class="table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Nome</th>
+                            <th>Documento</th>
+                            <th>Empresa</th>
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaVisitantes">
+
+                        <tr>
+
+                            <td colspan="4">
+
+                                Nenhum visitante cadastrado.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
 
             </section>
 
@@ -72,7 +105,11 @@ function carregarVisitantes() {
 
                     </div>
 
-                    <button type="submit" class="btn-primary">
+                    <button
+                        id="btnSalvar"
+                        type="button"
+                        class="btn-primary"
+                        onclick="salvarVisitante()">
 
                         Salvar Visitante
 
@@ -85,5 +122,179 @@ function carregarVisitantes() {
         </div>
 
     `;
+
+    atualizarTabela();
+}
+
+function salvarVisitante() {
+
+    // Captura os dados do formulário
+
+    const nome = document.getElementById("nome").value;
+
+    const documento = document.getElementById("documento").value;
+
+    const telefone = document.getElementById("telefone").value;
+
+    const empresa = document.getElementById("empresa").value;
+
+    // Validação
+
+    if (nome.trim() === "" || documento.trim() === "") {
+
+        alert("Preencha Nome e Documento.");
+
+        return;
+
+    }
+
+    // Cria objeto
+
+    const visitante = {
+
+        nome,
+        documento,
+        telefone,
+        empresa
+
+    };
+
+    // Salva ou atualiza
+
+    if (indiceEdicao === -1) {
+
+        visitantes.push(visitante);
+
+    } else {
+
+        visitantes[indiceEdicao] = visitante;
+
+        indiceEdicao = -1;
+
+    }
+    localStorage.setItem(
+    "visitantes",
+    JSON.stringify(visitantes)
+);
+
+    // Atualiza tabela
+
+    atualizarTabela();
+
+    // Limpa formulário
+
+    document.getElementById("formVisitante").reset();
+
+    // Restaura botão
+
+    document.getElementById("btnSalvar").textContent = "Salvar Visitante";
+
+    // Foco
+
+    document.getElementById("nome").focus();
+
+    console.log(visitantes);
+
+}
+
+function atualizarTabela() {
+
+    const lista = document.getElementById("listaVisitantes");
+
+    if (visitantes.length === 0) {
+
+        lista.innerHTML = `
+
+            <tr>
+
+                <td colspan="4">
+
+                    Nenhum visitante cadastrado.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+    lista.innerHTML = "";
+
+    visitantes.forEach(function (visitante, indice) {
+
+        lista.innerHTML += `
+
+            <tr>
+
+                <td>${visitante.nome}</td>
+
+                <td>${visitante.documento}</td>
+
+                <td>${visitante.empresa}</td>
+
+                <td>
+
+                    <a href="#" onclick="editarVisitante(${indice})">
+
+                        Editar
+
+                    </a>
+
+                    |
+
+                    <a href="#" onclick="excluirVisitante(${indice})">
+
+                        Excluir
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+function editarVisitante(indice) {
+
+    indiceEdicao = indice;
+
+    const visitante = visitantes[indice];
+
+    document.getElementById("nome").value = visitante.nome;
+
+    document.getElementById("documento").value = visitante.documento;
+
+    document.getElementById("telefone").value = visitante.telefone;
+
+    document.getElementById("empresa").value = visitante.empresa;
+
+    document.getElementById("btnSalvar").textContent = "Atualizar Visitante";
+
+}
+
+function excluirVisitante(indice) {
+
+    const confirmar = confirm("Deseja realmente excluir este visitante?");
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+    visitantes.splice(indice, 1);
+    localStorage.setItem(
+    "visitantes",
+    JSON.stringify(visitantes)
+);
+
+    atualizarTabela();
 
 }

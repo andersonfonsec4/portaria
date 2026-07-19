@@ -284,3 +284,113 @@ nav li a {
     width:320px;
 
 }
+.btn-primary{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:15px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-primary:hover{
+
+    background:#1D4ED8;
+
+}/* ===========================
+   TABELA
+=========================== */
+
+.table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.table th{
+
+    background:#1E293B;
+
+    color:white;
+
+    padding:14px;
+
+    text-align:left;
+
+}
+
+.table td{
+
+    padding:14px;
+
+    border-bottom:1px solid #E5E7EB;
+
+}
+
+.table tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+.empty{
+
+    text-align:center;
+
+    color:#64748B;
+
+    padding:40px;
+
+}
+.btn-primary{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:20px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-primary:hover{
+
+    background:#1D4ED8;
+
+}
