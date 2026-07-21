@@ -4,11 +4,11 @@ let visitantes = JSON.parse(localStorage.getItem("visitantes")) || [];
 let indiceEdicao = -1;
 
 function carregarVisitantes() {
-    alterarTitulo("Visitantes");
+  alterarTitulo("Visitantes");
 
-    const content = document.getElementById("content");
+  const content = document.getElementById("content");
 
-    content.innerHTML = `
+  content.innerHTML = `
 
         <section class="page-header">
 
@@ -23,6 +23,15 @@ function carregarVisitantes() {
             <section class="table-container">
 
                 <h2>Lista de Visitantes</h2>
+                <div class="search-box">
+
+    <input
+        type="text"
+        id="pesquisa"
+        placeholder="🔍 Pesquisar visitante..."
+        onkeyup="pesquisarVisitante()">
+
+</div>
 
                 <table class="table">
 
@@ -123,178 +132,167 @@ function carregarVisitantes() {
 
     `;
 
-    atualizarTabela();
+  atualizarTabela();
 }
 
 function salvarVisitante() {
+  // Captura os dados do formulário
 
-    // Captura os dados do formulário
+  const nome = document.getElementById("nome").value;
 
-    const nome = document.getElementById("nome").value;
+  const documento = document.getElementById("documento").value;
 
-    const documento = document.getElementById("documento").value;
+  const telefone = document.getElementById("telefone").value;
 
-    const telefone = document.getElementById("telefone").value;
+  const empresa = document.getElementById("empresa").value;
 
-    const empresa = document.getElementById("empresa").value;
+  // Validação
 
-    // Validação
+  if (nome.trim() === "" || documento.trim() === "") {
+    alert("Preencha Nome e Documento.");
 
-    if (nome.trim() === "" || documento.trim() === "") {
+    return;
+  }
 
-        alert("Preencha Nome e Documento.");
+  // Cria objeto
 
-        return;
+  const visitante = {
+    nome,
+    documento,
+    telefone,
+    empresa,
+  };
 
-    }
+  // Salva ou atualiza
 
-    // Cria objeto
+  if (indiceEdicao === -1) {
+    visitantes.push(visitante);
+  } else {
+    visitantes[indiceEdicao] = visitante;
 
-    const visitante = {
+    indiceEdicao = -1;
+  }
+  localStorage.setItem("visitantes", JSON.stringify(visitantes));
 
-        nome,
-        documento,
-        telefone,
-        empresa
+  // Atualiza tabela
 
-    };
+  atualizarTabela();
 
-    // Salva ou atualiza
+  // Limpa formulário
 
-    if (indiceEdicao === -1) {
+  document.getElementById("formVisitante").reset();
 
-        visitantes.push(visitante);
+  // Restaura botão
 
-    } else {
+  document.getElementById("btnSalvar").textContent = "Salvar Visitante";
 
-        visitantes[indiceEdicao] = visitante;
+  // Foco
 
-        indiceEdicao = -1;
+  document.getElementById("nome").focus();
 
-    }
-    localStorage.setItem(
-    "visitantes",
-    JSON.stringify(visitantes)
-);
-
-    // Atualiza tabela
-
-    atualizarTabela();
-
-    // Limpa formulário
-
-    document.getElementById("formVisitante").reset();
-
-    // Restaura botão
-
-    document.getElementById("btnSalvar").textContent = "Salvar Visitante";
-
-    // Foco
-
-    document.getElementById("nome").focus();
-
-    console.log(visitantes);
-
+  console.log(visitantes);
 }
 
 function atualizarTabela() {
+  const lista = document.getElementById("listaVisitantes");
+  const textoPesquisa = document.getElementById("pesquisa").value.toLowerCase();
 
-    const lista = document.getElementById("listaVisitantes");
+  // Não existe nenhum visitante cadastrado
+  if (visitantes.length === 0) {
+    lista.innerHTML = `
+      <tr>
+        <td colspan="4" class="empty">
+          Nenhum visitante cadastrado.
+        </td>
+      </tr>
+    `;
+    return;
+  }
 
-    if (visitantes.length === 0) {
+  lista.innerHTML = "";
 
-        lista.innerHTML = `
+  visitantes.forEach(function (visitante, indice) {
+    const encontrado =
+      visitante.nome.toLowerCase().includes(textoPesquisa) ||
+      visitante.documento.toLowerCase().includes(textoPesquisa) ||
+      visitante.empresa.toLowerCase().includes(textoPesquisa);
 
-            <tr>
-
-                <td colspan="4">
-
-                    Nenhum visitante cadastrado.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
+    if (!encontrado) {
+      return;
     }
 
-    lista.innerHTML = "";
+    lista.innerHTML += `
+      <tr>
 
-    visitantes.forEach(function (visitante, indice) {
+        <td>${visitante.nome}</td>
 
-        lista.innerHTML += `
+        <td>${visitante.documento}</td>
 
-            <tr>
+        <td>${visitante.empresa}</td>
 
-                <td>${visitante.nome}</td>
+        <td>
 
-                <td>${visitante.documento}</td>
+          <a href="#" onclick="editarVisitante(${indice})">
+            Editar
+          </a>
 
-                <td>${visitante.empresa}</td>
+          |
 
-                <td>
+          <a href="#" onclick="excluirVisitante(${indice})">
+            Excluir
+          </a>
 
-                    <a href="#" onclick="editarVisitante(${indice})">
+        </td>
 
-                        Editar
+      </tr>
+    `;
+  });
 
-                    </a>
-
-                    |
-
-                    <a href="#" onclick="excluirVisitante(${indice})">
-
-                        Excluir
-
-                    </a>
-
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
+  // Pesquisa não encontrou nenhum visitante
+  if (lista.innerHTML === "") {
+    lista.innerHTML = `
+      <tr>
+        <td colspan="4" class="empty">
+          Nenhum visitante encontrado.
+        </td>
+      </tr>
+    `;
+  }
 }
 
 function editarVisitante(indice) {
+  indiceEdicao = indice;
 
-    indiceEdicao = indice;
+  const visitante = visitantes[indice];
 
-    const visitante = visitantes[indice];
+  document.getElementById("nome").value = visitante.nome;
 
-    document.getElementById("nome").value = visitante.nome;
+  document.getElementById("documento").value = visitante.documento;
 
-    document.getElementById("documento").value = visitante.documento;
+  document.getElementById("telefone").value = visitante.telefone;
 
-    document.getElementById("telefone").value = visitante.telefone;
+  document.getElementById("empresa").value = visitante.empresa;
 
-    document.getElementById("empresa").value = visitante.empresa;
-
-    document.getElementById("btnSalvar").textContent = "Atualizar Visitante";
-
+  document.getElementById("btnSalvar").textContent = "Atualizar Visitante";
 }
 
 function excluirVisitante(indice) {
+  const visitante = visitantes[indice];
 
-    const confirmar = confirm("Deseja realmente excluir este visitante?");
+  const confirmar = confirm(
+    `Deseja realmente excluir o visitante:\n\n${visitante.nome}?`,
+  );
 
-    if (!confirmar) {
+  if (!confirmar) {
+    return;
+  }
 
-        return;
+  visitantes.splice(indice, 1);
 
-    }
+  localStorage.setItem("visitantes", JSON.stringify(visitantes));
 
-    visitantes.splice(indice, 1);
-    localStorage.setItem(
-    "visitantes",
-    JSON.stringify(visitantes)
-);
-
-    atualizarTabela();
-
+  atualizarTabela();
+}
+function pesquisarVisitante() {
+  atualizarTabela();
 }

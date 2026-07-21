@@ -182,215 +182,204 @@ nav li a {
    FORMULÁRIO
 =========================== */
 
-.page-header{
-
-    margin-bottom:30px;
-
+.page-header {
+  margin-bottom: 30px;
 }
 
-.page-header h1{
+.page-header h1 {
+  color: #1e293b;
 
-    color:#1E293B;
-
-    margin-bottom:8px;
-
+  margin-bottom: 8px;
 }
 
-.page-header p{
-
-    color:#64748B;
-
+.page-header p {
+  color: #64748b;
 }
 
-.form-container{
+.form-container {
+  background: #ffffff;
 
-    background:#FFFFFF;
+  padding: 25px;
 
-    padding:25px;
+  border-radius: 10px;
 
-    border-radius:10px;
-
-    box-shadow:0 3px 8px rgba(0,0,0,.08);
-
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-.form-group{
+.form-group {
+  display: flex;
 
-    display:flex;
+  flex-direction: column;
 
-    flex-direction:column;
-
-    margin-bottom:20px;
-
+  margin-bottom: 20px;
 }
 
-.form-group label{
+.form-group label {
+  margin-bottom: 8px;
 
-    margin-bottom:8px;
+  font-weight: 600;
 
-    font-weight:600;
-
-    color:#334155;
-
+  color: #334155;
 }
 
-.form-group input{
+.form-group input {
+  padding: 12px;
 
-    padding:12px;
+  border: 1px solid #cbd5e1;
 
-    border:1px solid #CBD5E1;
+  border-radius: 8px;
 
-    border-radius:8px;
-
-    font-size:15px;
-
+  font-size: 15px;
 }
 
-.form-group input:focus{
+.form-group input:focus {
+  outline: none;
 
-    outline:none;
-
-    border-color:#2563EB;
-
+  border-color: #2563eb;
 }
-.page-content{
+.page-content {
+  display: flex;
 
-    display:flex;
+  gap: 30px;
 
-    gap:30px;
-
-    align-items:flex-start;
-
+  align-items: flex-start;
 }
 
-.table-container{
+.table-container {
+  flex: 1;
 
-    flex:1;
+  background: white;
 
-    background:white;
+  padding: 25px;
 
-    padding:25px;
+  border-radius: 10px;
 
-    border-radius:10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 
-    box-shadow:0 3px 8px rgba(0,0,0,.08);
-
-    min-height:500px;
-
+  min-height: 500px;
 }
 
-.form-container{
-
-    width:320px;
-
+.form-container {
+  width: 320px;
 }
-.btn-primary{
+.btn-primary {
+  width: 100%;
 
-    width:100%;
+  padding: 14px;
 
-    padding:14px;
+  margin-top: 15px;
 
-    margin-top:15px;
+  background: #2563eb;
 
-    background:#2563EB;
+  color: white;
 
-    color:white;
+  border: none;
 
-    border:none;
+  border-radius: 8px;
 
-    border-radius:8px;
+  font-size: 16px;
 
-    font-size:16px;
+  font-weight: bold;
 
-    font-weight:bold;
+  cursor: pointer;
 
-    cursor:pointer;
-
-    transition:.3s;
-
+  transition: 0.3s;
 }
 
-.btn-primary:hover{
-
-    background:#1D4ED8;
-
-}/* ===========================
+.btn-primary:hover {
+  background: #1d4ed8;
+} /* ===========================
    TABELA
 =========================== */
 
-.table{
+.table {
+  width: 100%;
 
-    width:100%;
+  border-collapse: collapse;
 
-    border-collapse:collapse;
-
-    margin-top:20px;
-
+  margin-top: 20px;
 }
 
-.table th{
+.table th {
+  background: #1e293b;
 
-    background:#1E293B;
+  color: white;
 
-    color:white;
+  padding: 14px;
 
-    padding:14px;
-
-    text-align:left;
-
+  text-align: left;
 }
 
-.table td{
+.table td {
+  padding: 14px;
 
-    padding:14px;
-
-    border-bottom:1px solid #E5E7EB;
-
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.table tbody tr:hover{
-
-    background:#F8FAFC;
-
+.table tbody tr:hover {
+  background: #f8fafc;
 }
 
-.empty{
+.empty {
+  text-align: center;
 
-    text-align:center;
+  color: #64748b;
 
-    color:#64748B;
-
-    padding:40px;
-
+  padding: 40px;
 }
-.btn-primary{
+.btn-primary {
+  width: 100%;
 
-    width:100%;
+  padding: 14px;
 
-    padding:14px;
+  margin-top: 20px;
 
-    margin-top:20px;
+  background: #2563eb;
 
-    background:#2563EB;
+  color: white;
 
-    color:white;
+  border: none;
 
-    border:none;
+  border-radius: 8px;
 
-    border-radius:8px;
+  font-size: 16px;
 
-    font-size:16px;
+  font-weight: bold;
 
-    font-weight:bold;
+  cursor: pointer;
 
-    cursor:pointer;
-
-    transition:.3s;
-
+  transition: 0.3s;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+/* ===========================
+   PESQUISA
+=========================== */
 
-    background:#1D4ED8;
+.search-box {
+  margin: 20px 0;
+}
 
+.search-box input {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  transition: 0.3s;
+}
+
+.search-box input:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
