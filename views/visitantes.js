@@ -118,15 +118,15 @@ Cadastre visitantes para utilização no controle de acesso.
 
                     </div>
 
-                    <button
-                        id="btnSalvar"
-                        type="button"
-                        class="btn-primary"
-                        onclick="salvarVisitante()">
+  <button
+    id="btnSalvar"
+    type="button"
+    class="btn-primary"
+    onclick="salvarVisitante()">
 
-                        Salvar Visitante
+    Salvar Visitante
 
-                    </button>
+</button>
 
                 </form>
 
