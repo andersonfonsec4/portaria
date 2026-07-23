@@ -4,7 +4,7 @@ let visitantes = JSON.parse(localStorage.getItem("visitantes")) || [];
 let indiceEdicao = -1;
 
 function carregarVisitantes() {
-  alterarTitulo("Visitantes");
+  alterarTitulo("Cadastro de Visitantes");
 
   const content = document.getElementById("content");
 
@@ -13,6 +13,10 @@ function carregarVisitantes() {
         <section class="page-header">
 
             <h1>Cadastro de Visitantes</h1>
+
+<p>
+Cadastre visitantes para utilização no controle de acesso.
+</p>
 
             <p>Cadastre e gerencie os visitantes do sistema.</p>
 
