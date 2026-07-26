@@ -1,11 +1,11 @@
-function carregarControleAcesso() {
+let acessos = JSON.parse(localStorage.getItem("acessos")) || [];
 
+function carregarControleAcesso() {
     alterarTitulo("Controle de Acesso");
 
     const content = document.getElementById("content");
 
     content.innerHTML = `
-    
         <section class="page-header">
 
             <h1>Controle de Acesso</h1>
@@ -23,7 +23,7 @@ function carregarControleAcesso() {
                 <input
                     type="text"
                     id="pesquisaAcesso"
-                    placeholder="Pesquisar visitante...">
+                    placeholder="🔍 Pesquisar visitante...">
 
             </div>
 
@@ -49,20 +49,22 @@ function carregarControleAcesso() {
             </table>
 
         </div>
-
     `;
 
-    // Atualiza a tabela após criar o HTML
     atualizarControle();
 }
 
 function atualizarControle() {
 
+    acessos = JSON.parse(localStorage.getItem("acessos")) || [];
+
+    const visitantes =
+        JSON.parse(localStorage.getItem("visitantes")) || [];
+
     const lista = document.getElementById("listaControle");
 
     lista.innerHTML = "";
 
-    // Caso não exista nenhum visitante
     if (visitantes.length === 0) {
 
         lista.innerHTML = `
@@ -78,30 +80,38 @@ function atualizarControle() {
 
     visitantes.forEach(function (visitante, indice) {
 
-        lista.innerHTML += `
+        const acessoAberto = acessos.find(function (acesso) {
 
+            return acesso.visitanteId === indice && acesso.saida === null;
+
+        });
+
+        lista.innerHTML += `
             <tr>
 
                 <td>${visitante.nome}</td>
 
                 <td>${visitante.empresa || "-"}</td>
 
-                <td>Fora</td>
+                <td>${acessoAberto ? "🟢 Dentro" : "⚪ Fora"}</td>
 
                 <td>
 
                     <button
                         class="btn-primary"
-                        onclick="registrarEntrada(${indice})">
+                        onclick="${
+                            acessoAberto
+                                ? `registrarSaida(${indice})`
+                                : `registrarEntrada(${indice})`
+                        }">
 
-                        Entrar
+                        ${acessoAberto ? "Sair" : "Entrar"}
 
                     </button>
 
                 </td>
 
             </tr>
-
         `;
 
     });
@@ -110,6 +120,51 @@ function atualizarControle() {
 
 function registrarEntrada(indice) {
 
-    alert("Entrada do visitante " + indice);
+    acessos = JSON.parse(localStorage.getItem("acessos")) || [];
+
+    const acesso = {
+
+        visitanteId: indice,
+        entrada: new Date().toLocaleString("pt-BR"),
+        saida: null,
+        status: "Dentro"
+
+    };
+
+    acessos.push(acesso);
+
+    localStorage.setItem("acessos", JSON.stringify(acessos));
+
+    alert("Entrada registrada com sucesso!");
+
+    atualizarControle();
+
+}
+
+function registrarSaida(indice) {
+
+    acessos = JSON.parse(localStorage.getItem("acessos")) || [];
+
+    const acesso = acessos.find(function (acesso) {
+
+        return acesso.visitanteId === indice && acesso.saida === null;
+
+    });
+
+    if (!acesso) {
+
+        return;
+
+    }
+
+    acesso.saida = new Date().toLocaleString("pt-BR");
+
+    acesso.status = "Fora";
+
+    localStorage.setItem("acessos", JSON.stringify(acessos));
+
+    alert("Saída registrada com sucesso!");
+
+    atualizarControle();
 
 }
