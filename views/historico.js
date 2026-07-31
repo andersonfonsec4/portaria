@@ -1,13 +1,96 @@
 function carregarHistorico() {
-  alterarTitulo("Histórico");
 
-  const content = document.getElementById("content");
+    alterarTitulo("Histórico");
 
-  content.innerHTML = `
+    const content = document.getElementById("content");
 
-        <h1>Histórico</h1>
+    content.innerHTML = `
 
-        <p>Histórico do sistema.</p>
+        <section class="page-header">
+
+            <h1>Histórico de Acessos</h1>
+
+            <p>Consulta de entradas e saídas dos visitantes.</p>
+
+        </section>
+
+        <div class="table-container">
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Visitante</th>
+                        <th>Empresa</th>
+                        <th>Entrada</th>
+                        <th>Saída</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="listaHistorico">
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     `;
+
+    atualizarHistorico();
+
+}
+
+function atualizarHistorico() {
+
+    const lista = document.getElementById("listaHistorico");
+
+    const acessos = JSON.parse(localStorage.getItem("acessos")) || [];
+
+    const visitantes = JSON.parse(localStorage.getItem("visitantes")) || [];
+
+    lista.innerHTML = "";
+
+    if (acessos.length === 0) {
+
+        lista.innerHTML = `
+            <tr>
+                <td colspan="5" class="empty">
+                    Nenhum registro encontrado.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    acessos.forEach(function (acesso) {
+
+        const visitante = visitantes[acesso.visitanteId];
+
+        lista.innerHTML += `
+
+            <tr>
+
+                <td>${visitante.nome}</td>
+
+                <td>${visitante.empresa || "-"}</td>
+
+                <td>${acesso.entrada}</td>
+
+                <td>${acesso.saida || "-"}</td>
+
+                <td>${acesso.status}</td>
+
+            </tr>
+
+        `;
+
+    });
+
 }

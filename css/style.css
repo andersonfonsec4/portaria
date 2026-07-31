@@ -383,3 +383,106 @@ nav li a {
 
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
+/* ===========================
+   STATUS
+=========================== */
+
+.status-dentro{
+
+    display:inline-block;
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+}
+
+.status-fora{
+
+    display:inline-block;
+
+    background:#E5E7EB;
+
+    color:#6B7280;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   BOTÕES
+=========================== */
+
+.btn-entrar{
+
+    width:140px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#22C55E;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-entrar:hover{
+
+    background:#16A34A;
+
+    transform:translateY(-2px);
+
+}
+
+.btn-sair{
+
+    width:140px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#EF4444;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-sair:hover{
+
+    background:#DC2626;
+
+    transform:translateY(-2px);
+
+}
