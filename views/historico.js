@@ -15,6 +15,15 @@ function carregarHistorico() {
         </section>
 
         <div class="table-container">
+        <div class="search-box">
+
+    <input
+        type="text"
+        id="pesquisaHistorico"
+        placeholder="🔍 Pesquisar visitante..."
+        onkeyup="pesquisarHistorico()">
+
+</div>
 
             <table class="table">
 
@@ -45,14 +54,22 @@ function carregarHistorico() {
     atualizarHistorico();
 
 }
-
 function atualizarHistorico() {
 
     const lista = document.getElementById("listaHistorico");
 
-    const acessos = JSON.parse(localStorage.getItem("acessos")) || [];
+    const acessos = JSON.parse(
+        localStorage.getItem("acessos")
+    ) || [];
 
-    const visitantes = JSON.parse(localStorage.getItem("visitantes")) || [];
+    const visitantes = JSON.parse(
+        localStorage.getItem("visitantes")
+    ) || [];
+
+    const textoPesquisa = document
+        .getElementById("pesquisaHistorico")
+        .value
+        .toLowerCase();
 
     lista.innerHTML = "";
 
@@ -72,6 +89,14 @@ function atualizarHistorico() {
     acessos.forEach(function (acesso) {
 
         const visitante = visitantes[acesso.visitanteId];
+
+        const encontrado = visitante.nome
+            .toLowerCase()
+            .includes(textoPesquisa);
+
+        if (!encontrado) {
+            return;
+        }
 
         lista.innerHTML += `
 
@@ -93,4 +118,7 @@ function atualizarHistorico() {
 
     });
 
+}
+function pesquisarHistorico() {
+    atualizarHistorico();
 }
