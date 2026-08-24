@@ -15,15 +15,16 @@ function carregarHistorico() {
         </section>
 
         <div class="table-container">
-        <div class="search-box">
 
-    <input
-        type="text"
-        id="pesquisaHistorico"
-        placeholder="🔍 Pesquisar visitante..."
-        onkeyup="pesquisarHistorico()">
+            <div class="search-box">
 
-</div>
+                <input
+                    type="text"
+                    id="pesquisaHistorico"
+                    placeholder="🔍 Pesquisar visitante..."
+                    onkeyup="pesquisarHistorico()">
+
+            </div>
 
             <table class="table">
 
@@ -54,6 +55,8 @@ function carregarHistorico() {
     atualizarHistorico();
 
 }
+
+
 function atualizarHistorico() {
 
     const lista = document.getElementById("listaHistorico");
@@ -76,11 +79,17 @@ function atualizarHistorico() {
     if (acessos.length === 0) {
 
         lista.innerHTML = `
+
             <tr>
+
                 <td colspan="5" class="empty">
+
                     Nenhum registro encontrado.
+
                 </td>
+
             </tr>
+
         `;
 
         return;
@@ -95,7 +104,9 @@ function atualizarHistorico() {
             .includes(textoPesquisa);
 
         if (!encontrado) {
+
             return;
+
         }
 
         lista.innerHTML += `
@@ -110,7 +121,23 @@ function atualizarHistorico() {
 
                 <td>${acesso.saida || "-"}</td>
 
-                <td>${acesso.status}</td>
+                <td>
+
+                    <span class="${
+                        acesso.status === "Dentro"
+                            ? "status-dentro"
+                            : "status-fora"
+                    }">
+
+                        ${
+                            acesso.status === "Dentro"
+                                ? "🟢 Dentro"
+                                : "⚪ Fora"
+                        }
+
+                    </span>
+
+                </td>
 
             </tr>
 
@@ -118,7 +145,29 @@ function atualizarHistorico() {
 
     });
 
+    if (lista.innerHTML === "") {
+
+        lista.innerHTML = `
+
+            <tr>
+
+                <td colspan="5" class="empty">
+
+                    Nenhum registro encontrado.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
 }
+
+
 function pesquisarHistorico() {
+
     atualizarHistorico();
+
 }

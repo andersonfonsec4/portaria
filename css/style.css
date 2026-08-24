@@ -486,3 +486,12 @@ nav li a {
     transform:translateY(-2px);
 
 }
+.status-dentro {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.status-fora {
+    color: #6b7280;
+    font-weight: bold;
+}
