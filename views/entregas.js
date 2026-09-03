@@ -1,14 +1,11 @@
-let entregas =
-    JSON.parse(localStorage.getItem("entregas")) || [];
-
+let entregas = JSON.parse(localStorage.getItem("entregas")) || [];
 
 function carregarEntregas() {
+  alterarTitulo("Entregas");
 
-    alterarTitulo("Entregas");
+  const content = document.getElementById("content");
 
-    const content = document.getElementById("content");
-
-    content.innerHTML = `
+  content.innerHTML = `
 
         <section class="page-header">
 
@@ -108,6 +105,7 @@ function carregarEntregas() {
                             <th>Descrição</th>
                             <th>Data</th>
                             <th>Status</th>
+                            <th>Ação</th>
 
                         </tr>
 
@@ -125,91 +123,55 @@ function carregarEntregas() {
 
     `;
 
-    atualizarListaEntregas();
-
+  atualizarListaEntregas();
 }
-
 
 function registrarEntrega() {
+  const destinatario = document.getElementById("destinatario").value;
 
-    const destinatario =
-        document.getElementById("destinatario").value;
+  const empresa = document.getElementById("empresaEntrega").value;
 
-    const empresa =
-        document.getElementById("empresaEntrega").value;
+  const entregador = document.getElementById("entregador").value;
 
-    const entregador =
-        document.getElementById("entregador").value;
+  const descricao = document.getElementById("descricaoEntrega").value;
 
-    const descricao =
-        document.getElementById("descricaoEntrega").value;
+  if (destinatario.trim() === "" || descricao.trim() === "") {
+    alert("Preencha o destinatário e a descrição da entrega.");
 
+    return;
+  }
 
-    if (
-        destinatario.trim() === "" ||
-        descricao.trim() === ""
-    ) {
+  const entrega = {
+    destinatario,
+    empresa,
+    entregador,
+    descricao,
 
-        alert(
-            "Preencha o destinatário e a descrição da entrega."
-        );
+    data: new Date().toLocaleString("pt-BR"),
 
-        return;
-    }
+    status: "Pendente",
+  };
 
+  entregas.push(entrega);
 
-    const entrega = {
+  localStorage.setItem("entregas", JSON.stringify(entregas));
 
-        destinatario,
-        empresa,
-        entregador,
-        descricao,
+  alert("Entrega registrada com sucesso!");
 
-        data: new Date().toLocaleString("pt-BR"),
+  document.getElementById("formEntrega").reset();
 
-        status: "Pendente"
-
-    };
-
-
-    entregas.push(entrega);
-
-
-    localStorage.setItem(
-        "entregas",
-        JSON.stringify(entregas)
-    );
-
-
-    alert("Entrega registrada com sucesso!");
-
-
-    document
-        .getElementById("formEntrega")
-        .reset();
-
-
-    atualizarListaEntregas();
-
+  atualizarListaEntregas();
 }
 
-
 function atualizarListaEntregas() {
+  const lista = document.getElementById("listaEntregas");
 
-    const lista =
-        document.getElementById("listaEntregas");
+  entregas = JSON.parse(localStorage.getItem("entregas")) || [];
 
+  lista.innerHTML = "";
 
-    entregas =
-        JSON.parse(localStorage.getItem("entregas")) || [];
-
-
-    lista.innerHTML = "";
-
-
-    if (entregas.length === 0) {
-
-        lista.innerHTML = `
+  if (entregas.length === 0) {
+    lista.innerHTML = `
 
             <tr>
 
@@ -223,13 +185,11 @@ function atualizarListaEntregas() {
 
         `;
 
-        return;
-    }
+    return;
+  }
 
-
-    entregas.forEach(function (entrega) {
-
-        lista.innerHTML += `
+  entregas.forEach(function (entrega) {
+    lista.innerHTML += `
 
             <tr>
 
@@ -245,10 +205,38 @@ function atualizarListaEntregas() {
 
                 <td>${entrega.status}</td>
 
+<td>
+
+    ${
+      entrega.status === "Pendente"
+        ? `
+                <button
+                    class="btn-primary"
+                    onclick="receberEntrega(${entregas.indexOf(entrega)})">
+
+                    Receber
+
+                </button>
+            `
+        : "Recebida"
+    }
+
+</td>
+
             </tr>
 
         `;
+  });
+}
+function receberEntrega(indice) {
 
-    });
+    entregas[indice].status = "Recebida";
+
+    localStorage.setItem(
+        "entregas",
+        JSON.stringify(entregas)
+    );
+
+    atualizarListaEntregas();
 
 }
