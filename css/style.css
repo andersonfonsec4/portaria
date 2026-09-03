@@ -387,111 +387,117 @@ nav li a {
    STATUS
 =========================== */
 
-.status-dentro{
+.status-dentro {
+  display: inline-block;
 
-    display:inline-block;
+  background: #dcfce7;
 
-    background:#DCFCE7;
+  color: #15803d;
 
-    color:#15803D;
+  padding: 6px 14px;
 
-    padding:6px 14px;
+  border-radius: 20px;
 
-    border-radius:20px;
+  font-weight: bold;
 
-    font-weight:bold;
-
-    font-size:14px;
-
+  font-size: 14px;
 }
 
-.status-fora{
+.status-fora {
+  display: inline-block;
 
-    display:inline-block;
+  background: #e5e7eb;
 
-    background:#E5E7EB;
+  color: #6b7280;
 
-    color:#6B7280;
+  padding: 6px 14px;
 
-    padding:6px 14px;
+  border-radius: 20px;
 
-    border-radius:20px;
+  font-weight: bold;
 
-    font-weight:bold;
-
-    font-size:14px;
-
+  font-size: 14px;
 }
 
 /* ===========================
    BOTÕES
 =========================== */
 
-.btn-entrar{
+.btn-entrar {
+  width: 140px;
 
-    width:140px;
+  padding: 12px;
 
-    padding:12px;
+  border: none;
 
-    border:none;
+  border-radius: 8px;
 
-    border-radius:8px;
+  background: #22c55e;
 
-    background:#22C55E;
+  color: white;
 
-    color:white;
+  font-weight: bold;
 
-    font-weight:bold;
+  cursor: pointer;
 
-    cursor:pointer;
-
-    transition:.3s;
-
+  transition: 0.3s;
 }
 
-.btn-entrar:hover{
+.btn-entrar:hover {
+  background: #16a34a;
 
-    background:#16A34A;
-
-    transform:translateY(-2px);
-
+  transform: translateY(-2px);
 }
 
-.btn-sair{
+.btn-sair {
+  width: 140px;
 
-    width:140px;
+  padding: 12px;
 
-    padding:12px;
+  border: none;
 
-    border:none;
+  border-radius: 8px;
 
-    border-radius:8px;
+  background: #ef4444;
 
-    background:#EF4444;
+  color: white;
 
-    color:white;
+  font-weight: bold;
 
-    font-weight:bold;
+  cursor: pointer;
 
-    cursor:pointer;
-
-    transition:.3s;
-
+  transition: 0.3s;
 }
 
-.btn-sair:hover{
+.btn-sair:hover {
+  background: #dc2626;
 
-    background:#DC2626;
-
-    transform:translateY(-2px);
-
+  transform: translateY(-2px);
 }
 .status-dentro {
-    color: #16a34a;
-    font-weight: bold;
+  color: #16a34a;
+  font-weight: bold;
 }
 
 .status-fora {
-    color: #6b7280;
-    font-weight: bold;
+  color: #6b7280;
+  font-weight: bold;
+}
+.status-pendente,
+.status-recebida {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-pendente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-recebida {
+  background-color: #d1e7dd;
+  color: #0f5132;
 }

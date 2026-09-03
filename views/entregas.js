@@ -175,7 +175,7 @@ function atualizarListaEntregas() {
 
             <tr>
 
-                <td colspan="6" class="empty">
+                <td colspan="7" class="empty">
 
                     Nenhuma entrega registrada.
 
@@ -203,24 +203,28 @@ function atualizarListaEntregas() {
 
                 <td>${entrega.data}</td>
 
-                <td>${entrega.status}</td>
+                
 
 <td>
+    <span class="${
+      entrega.status === "Pendente" ? "status-pendente" : "status-recebida"
+    }">
+        ${entrega.status === "Pendente" ? "🟠 Pendente" : "🟢 Recebida"}
+    </span>
+</td>
 
+<td>
     ${
       entrega.status === "Pendente"
         ? `
                 <button
                     class="btn-primary"
                     onclick="receberEntrega(${entregas.indexOf(entrega)})">
-
                     Receber
-
                 </button>
-            `
-        : "Recebida"
+              `
+        : "—"
     }
-
 </td>
 
             </tr>
@@ -229,14 +233,9 @@ function atualizarListaEntregas() {
   });
 }
 function receberEntrega(indice) {
+  entregas[indice].status = "Recebida";
 
-    entregas[indice].status = "Recebida";
+  localStorage.setItem("entregas", JSON.stringify(entregas));
 
-    localStorage.setItem(
-        "entregas",
-        JSON.stringify(entregas)
-    );
-
-    atualizarListaEntregas();
-
+  atualizarListaEntregas();
 }
