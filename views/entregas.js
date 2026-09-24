@@ -91,7 +91,16 @@ function carregarEntregas() {
 
             <section class="table-container">
 
+                
                 <h2>Entregas Registradas</h2>
+
+<input
+    type="text"
+    id="pesquisaEntregas"
+    placeholder="🔍 Pesquisar entrega..."
+    onkeyup="pesquisarEntregas()">
+
+
 
                 <table class="table">
 
@@ -231,6 +240,45 @@ function atualizarListaEntregas() {
 
         `;
   });
+}
+function pesquisarEntregas() {
+  const textoPesquisa = document
+    .getElementById("pesquisaEntregas")
+    .value.toLowerCase();
+
+  if (textoPesquisa === "") {
+    atualizarListaEntregas();
+    return;
+  }
+
+  atualizarListaEntregas();
+
+  const linhas = document.querySelectorAll("#listaEntregas tr");
+
+  let encontrou = false;
+
+  linhas.forEach(function (linha) {
+    const textoLinha = linha.textContent.toLowerCase();
+
+    if (textoLinha.includes(textoPesquisa)) {
+      linha.style.display = "";
+      encontrou = true;
+    } else {
+      linha.style.display = "none";
+    }
+  });
+
+  if (!encontrou) {
+    const lista = document.getElementById("listaEntregas");
+
+    lista.innerHTML = `
+      <tr>
+        <td colspan="7" class="empty">
+          Nenhuma entrega encontrada.
+        </td>
+      </tr>
+    `;
+  }
 }
 function receberEntrega(indice) {
   entregas[indice].status = "Recebida";
