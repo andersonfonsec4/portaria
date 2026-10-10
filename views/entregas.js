@@ -99,6 +99,17 @@ function carregarEntregas() {
     id="pesquisaEntregas"
     placeholder="🔍 Pesquisar entrega..."
     onkeyup="pesquisarEntregas()">
+  
+<select
+    id="filtroStatusEntregas"
+    onchange="pesquisarEntregas()">
+
+    <option value="">Todos os status</option>
+    <option value="Pendente">🟠 Pendente</option>
+    <option value="Recebida">🟢 Recebida</option>
+
+</select>
+
 
 
 
@@ -169,17 +180,15 @@ function registrarEntrega() {
 
   document.getElementById("formEntrega").reset();
 
-  atualizarListaEntregas();
+  pesquisarEntregas();
 }
 
-function atualizarListaEntregas() {
+function atualizarListaEntregas(listaEntregas = entregas) {
   const lista = document.getElementById("listaEntregas");
-
-  entregas = JSON.parse(localStorage.getItem("entregas")) || [];
 
   lista.innerHTML = "";
 
-  if (entregas.length === 0) {
+  if (listaEntregas.length === 0) {
     lista.innerHTML = `
 
             <tr>
@@ -197,7 +206,7 @@ function atualizarListaEntregas() {
     return;
   }
 
-  entregas.forEach(function (entrega) {
+  listaEntregas.forEach(function (entrega) {
     lista.innerHTML += `
 
             <tr>
@@ -241,49 +250,46 @@ function atualizarListaEntregas() {
         `;
   });
 }
+
 function pesquisarEntregas() {
+  entregas = JSON.parse(localStorage.getItem("entregas")) || [];
+
   const textoPesquisa = document
     .getElementById("pesquisaEntregas")
-    .value.toLowerCase();
+    .value.toLowerCase()
+    .trim();
 
-  if (textoPesquisa === "") {
-    atualizarListaEntregas();
-    return;
-  }
+  const statusSelecionado = document.getElementById(
+    "filtroStatusEntregas",
+  ).value;
 
-  atualizarListaEntregas();
+  const entregasFiltradas = entregas.filter(function (entrega) {
+    const correspondeTexto = [
+      entrega.destinatario,
+      entrega.empresa,
+      entrega.entregador,
+      entrega.descricao,
+      entrega.data,
+      entrega.status,
+    ].some(function (campo) {
+      return String(campo || "")
+        .toLowerCase()
+        .includes(textoPesquisa);
+    });
 
-  const linhas = document.querySelectorAll("#listaEntregas tr");
+    const correspondeStatus =
+      statusSelecionado === "" || entrega.status === statusSelecionado;
 
-  let encontrou = false;
-
-  linhas.forEach(function (linha) {
-    const textoLinha = linha.textContent.toLowerCase();
-
-    if (textoLinha.includes(textoPesquisa)) {
-      linha.style.display = "";
-      encontrou = true;
-    } else {
-      linha.style.display = "none";
-    }
+    return correspondeTexto && correspondeStatus;
   });
 
-  if (!encontrou) {
-    const lista = document.getElementById("listaEntregas");
-
-    lista.innerHTML = `
-      <tr>
-        <td colspan="7" class="empty">
-          Nenhuma entrega encontrada.
-        </td>
-      </tr>
-    `;
-  }
+  atualizarListaEntregas(entregasFiltradas);
 }
+
 function receberEntrega(indice) {
   entregas[indice].status = "Recebida";
 
   localStorage.setItem("entregas", JSON.stringify(entregas));
 
-  atualizarListaEntregas();
+  pesquisarEntregas();
 }
