@@ -120,12 +120,14 @@ function carregarEntregas() {
                         <tr>
 
                             <th>Destinatário</th>
-                            <th>Empresa</th>
-                            <th>Entregador</th>
-                            <th>Descrição</th>
-                            <th>Data</th>
-                            <th>Status</th>
-                            <th>Ação</th>
+<th>Empresa</th>
+<th>Entregador</th>
+<th>Descrição</th>
+<th>Data</th>
+<th>Status</th>
+<th>Retirado por</th>
+<th>Data da retirada</th>
+<th>Ação</th>
 
                         </tr>
 
@@ -193,7 +195,7 @@ function atualizarListaEntregas(listaEntregas = entregas) {
 
             <tr>
 
-                <td colspan="7" class="empty">
+                <td colspan="9" class="empty">
 
                     Nenhuma entrega registrada.
 
@@ -230,6 +232,8 @@ function atualizarListaEntregas(listaEntregas = entregas) {
         ${entrega.status === "Pendente" ? "🟠 Pendente" : "🟢 Recebida"}
     </span>
 </td>
+<td>${entrega.retiradaPor || "-"}</td>
+<td>${entrega.dataRetirada || "-"}</td>
 
 <td>
     ${
@@ -286,10 +290,23 @@ function pesquisarEntregas() {
   atualizarListaEntregas(entregasFiltradas);
 }
 
+
 function receberEntrega(indice) {
-  entregas[indice].status = "Recebida";
+    const nomeRetirada = prompt(
+        "Digite o nome de quem está retirando a encomenda:"
+    );
 
-  localStorage.setItem("entregas", JSON.stringify(entregas));
+    // Cancela se a janela for fechada ou o nome ficar vazio.
+    if (nomeRetirada === null || nomeRetirada.trim() === "") {
+        alert("Retirada cancelada. Informe o nome da pessoa.");
+        return;
+    }
 
-  pesquisarEntregas();
+    entregas[indice].status = "Recebida";
+    entregas[indice].retiradaPor = nomeRetirada.trim();
+    entregas[indice].dataRetirada = new Date().toLocaleString("pt-BR");
+
+    localStorage.setItem("entregas", JSON.stringify(entregas));
+
+    pesquisarEntregas();
 }
