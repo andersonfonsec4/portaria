@@ -1,80 +1,92 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sistema de Portaria</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-  <body>
+<body>
+
     <!-- MENU LATERAL -->
     <aside class="sidebar">
-      <div class="logo">
-        <h2>🛡 Portaria</h2>
 
-        <p>Controle de Acesso</p>
-      </div>
+        <div class="logo">
+            <h2>🛡 Portaria</h2>
+            <p>Controle de Acesso</p>
+        </div>
 
-      <nav>
-        <ul>
-          <li>
-            <a href="#" onclick="carregarDashboard()">🏠 Dashboard</a>
-          </li>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" onclick="carregarDashboard(); return false;">
+                        🏠 Dashboard
+                    </a>
+                </li>
 
-          <li>
-            <a href="#" onclick="carregarVisitantes()">
-              👤 Cadastro de Visitantes
-            </a>
-            <li>
+                <li>
+                    <a href="#" onclick="carregarVisitantes(); return false;">
+                        👤 Cadastro de Visitantes
+                    </a>
+                </li>
 
-    <a href="#" onclick="carregarControleAcesso()">
+                <li>
+                    <a href="#" onclick="carregarControleAcesso(); return false;">
+                        🚪 Controle de Acesso
+                    </a>
+                </li>
 
-        🚪 Controle de Acesso
+                <li>
+                    <a href="#" onclick="carregarEntregas(); return false;">
+                        📦 Entregas
+                    </a>
+                </li>
 
-    </a>
+                <li>
+                    <a href="#" onclick="carregarHistorico(); return false;">
+                        📋 Histórico
+                    </a>
+                </li>
 
-</li>
-          </li>
+                <li>
+                    <a href="#" onclick="carregarConfiguracoes(); return false;">
+                        ⚙ Configurações
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-          <li>
-            <a href="#" onclick="carregarEntregas()">📦 Entregas</a>
-          </li>
-
-          <li>
-            <a href="#" onclick="carregarHistorico()">📋 Histórico</a>
-          </li>
-
-          <li>
-            <a href="#" onclick="carregarConfiguracoes()">⚙ Configurações</a>
-          </li>
-        </ul>
-      </nav>
     </aside>
 
-    <!-- CONTEÚDO -->
+    <!-- CONTEÚDO PRINCIPAL -->
     <div class="content">
-      <header class="header">
-        <div class="header-left">
-          <h2 id="page-title">Dashboard</h2>
 
-          <p>Sistema de Controle de Portaria</p>
-        </div>
+        <!-- CABEÇALHO -->
+        <header class="header">
 
-        <div class="header-right">
-          <span id="current-date"></span>
+            <div class="header-left">
+                <h2 id="page-title">Dashboard</h2>
+                <p>Sistema de Controle de Portaria</p>
+            </div>
 
-          <span class="user-name">Anderson</span>
-        </div>
-      </header>
+            <div class="header-right">
+                <span id="current-date"></span>
+                <span class="user-name">Anderson</span>
+            </div>
 
-      <!-- ÁREA DINÂMICA -->
-      <main class="main" id="content"></main>
+        </header>
+
+        <!-- ÁREA ONDE AS PÁGINAS SÃO CARREGADAS -->
+        <main class="main" id="content">
+        </main>
+
     </div>
 
-    <!-- VIEWS -->
+    <!-- PÁGINAS DO SISTEMA -->
     <script src="views/dashboard.js"></script>
     <script src="views/visitantes.js"></script>
     <script src="views/controleAcesso.js"></script>
@@ -82,7 +94,8 @@
     <script src="views/historico.js"></script>
     <script src="views/configuracoes.js"></script>
 
-    <!-- APP -->
+    <!-- APLICAÇÃO PRINCIPAL -->
     <script src="js/app.js"></script>
-  </body>
+
+</body>
 </html>

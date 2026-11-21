@@ -111,9 +111,9 @@ function carregarEntregas() {
 </select>
 
 
-
-
-                <table class="table">
+<div class="table-responsive">
+    <table class="table">
+                
 
                     <thead>
 
@@ -137,7 +137,8 @@ function carregarEntregas() {
 
                     </tbody>
 
-                </table>
+                    </table>
+</div>
 
             </section>
 
